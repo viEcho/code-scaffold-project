@@ -1,7 +1,7 @@
 # one-code-scaffold-project
 
 #### Description
-一个代码脚手架工程，提供了各种常用的代码操作示例！
+A code scaffolding project provides various common code operation examples! Can quickly help you build a project, as well as a variety of custom tools!
 
 #### Software Architecture
 Software architecture description
