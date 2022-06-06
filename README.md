@@ -1,37 +1,39 @@
-# one-code-scaffold-project
+## code-scaffold-project
 
 #### 介绍
-一个代码脚手架工程，提供了各种常用的代码操作示例！可以快速帮你搭建一个工程，以及各种自定义工具类！
+一个代码脚手架工程，提供了各种常用的代码操作示例！
+
+其中除基础微服务提供基本的公共属性外，其他微服务应都可以独立运行，且并不相互通信；
+
+因为本工程的初衷只是为了说明各技术点及其中间件的使用示例，并不做架构层面的设计；
+
+如需某个微服务为单独的公用服务，自行抽取暴露出来应用到你们自己工程中即可；
+
 
 #### 软件架构
-软件架构说明
+jdk1.8 + springboot2.4.5作为基础
 
-
-#### 安装教程
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
+其余各个中间件及工具的版本在各子模块中给出
 
 #### 使用说明
+1. 若你也是此项目的贡献者，在开始之前建议你参照此博客：
+[配置代码注释模板](http://imecho.life/index.php/2021/05/22/notes-template/)
+2. 提交代码前请注明，提交代码的改动点及其原因，并且在对应工程的时间线上列明
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+#### 工程说明
+|工程名 | 工程说明 |备注|
+| :--- | :---:| :---|
+|code-scaffold-project|父工程|一个包含各种中间件及工具类的微服务集合|
+|base-common-project|子工程|所有微服务的基础工程，封装了一些基本的工具类，常量，全局异常处理|
+|kafka-server-demo|子工程|kafka 服务的demo示例工程|
+|redis-server-demo|子工程|redis 服务的demo示例工程|
 
 
-#### 特技
+#### 参与贡献者
+- Jay
+- xxx
+- xxx
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+#### 时间线
+- 2022.6.6 初始化基本工程
+- 
