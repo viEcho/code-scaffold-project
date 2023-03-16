@@ -1,0 +1,88 @@
+spring:
+  flyway:
+    # 开启flyway插件
+    enabled: true
+    baseline-on-migrate: true
+    encoding: UTF-8
+
+    # sql 脚本的目录，默认是 classpath:db/migration
+    locations: classpath:db/migration
+    # 这个属性非常关键，它表示是否要清除已有库下的表
+    # 如果执行的脚本是 V1__xxx.sql，那么会先清除已有库下的表，然后再执行脚本，
+    # 这在开发环境下还挺方便，但是在生产环境下就要命了，而且它默认就是要清除，生产环境一定要自己配置设置为 true。
+    clean-disabled: false
+    # 配置数据库信息表的名称，默认是flyway_schema_history
+    table: flyway_schema_history
+
+
+  # 数据源配置
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    ds:
+      # 主库数据源，默认 master 不能变
+      master:
+        url: jdbc:mysql://localhost:3306/master_db?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=Asia/Shanghai
+        username: root
+        password: 123456
+      # 从库数据源
+      slave:
+        url: jdbc:mysql://localhost:3306/slave_db?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=Asia/Shanghai
+        username: root
+        password: 123456
+    # 初始连接数
+    initialSize: 5
+    # 最小连接池数量
+    minIdle: 10
+    # 最大连接池数量
+    maxActive: 20
+    # 配置获取连接等待超时的时间
+    maxWait: 60000
+    # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    timeBetweenEvictionRunsMillis: 60000
+    # 配置一个连接在池中最小生存的时间，单位是毫秒
+    minEvictableIdleTimeMillis: 300000
+    # 配置一个连接在池中最大生存的时间，单位是毫秒
+    maxEvictableIdleTimeMillis: 900000
+    # 配置检测连接是否有效
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    druid:
+      webStatFilter:
+        enabled: true
+      statViewServlet:
+        enabled: true
+        # 设置白名单，不填则允许所有访问
+        allow:
+        url-pattern: /druid/*
+        # 控制台管理用户名和密码
+        login-username: javaboy
+        login-password: 123456
+      filter:
+        stat:
+          enabled: true
+          # 慢SQL记录
+          log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: true
+        wall:
+          config:
+            multi-statement-allow: true
+
+#mybatis-plus 配置
+mybatis-plus:
+  #mapper-locations: classpath:mapper/*Mapper.xml,mapper/*/*Mapper.xml
+  mapper-locations: classpath:mapper/*
+  typeAliasesPackage: com.datasource.sample.entity
+  defaultStatementTimeout: 120
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    call-setters-on-nulls: true
+    #在映射实体或者属性时，将数据库中表名和字段名中的下划线去掉，按照驼峰命名法映射 address_book ---> addressBook
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      logic-delete-value: 1 #删除
+      logic-not-delete-value: 0 #未删除

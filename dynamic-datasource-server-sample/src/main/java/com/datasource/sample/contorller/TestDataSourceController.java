@@ -1,0 +1,42 @@
+package com.datasource.sample.contorller;
+
+import com.base.common.utils.ExceptionUtil;
+import com.base.common.vo.ResponseVO;
+import com.datasource.sample.service.UserService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * @description: 数据源测试 接口类
+ * @author: echo
+ * @date: 2023/3/16
+ */
+@RestController
+@RequestMapping("/dataSource")
+@Slf4j
+public class TestDataSourceController {
+
+    @Autowired
+    private UserService userService;
+
+    @GetMapping("/queryUserCount")
+    ResponseVO queryCount(){
+        ResponseVO vo = new ResponseVO();
+        try {
+            Map<String,Integer> countMap = new HashMap<>();
+            countMap.put("master",userService.queryMasterUserCount());
+            countMap.put("slave",userService.querySlaveUserCount());
+            vo.data(countMap);
+        } catch (Exception e) {
+            log.error("TestDataSourceController queryUserCount occurs error：{}",e);
+            ExceptionUtil.checkResponse(e,vo);
+        }
+        return vo;
+    }
+}

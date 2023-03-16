@@ -1,7 +1,6 @@
-## redis-server-sample
+## seate-server-sample
 
 #### 介绍
-
 
 
 #### 软件架构
@@ -20,4 +19,4 @@
 - xxx
 
 #### 时间线
-- 2022.6.6 初始化基本工程
+
