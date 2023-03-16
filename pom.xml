@@ -23,6 +23,8 @@
         <module>redis-server-sample</module>
         <module>kafka-server-sample</module>
         <module>base-common</module>
+        <module>seata-server-sample</module>
+        <module>dynamic-datasource-server-sample</module>
     </modules>
 
     <!-- 全局依赖版本管理 -->
@@ -46,6 +48,7 @@
         <pagehelper.version>1.2.5</pagehelper.version>
         <slf4j-api.version>1.7.25</slf4j-api.version>
         <slf4j-log4j12.version>1.7.25</slf4j-log4j12.version>
+        <annotations.version>3.0.1</annotations.version>
 
         <!--子模块jar版本-->
         <kafka.client.version>2.2.0</kafka.client.version>
@@ -169,6 +172,16 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>${slf4j-log4j12.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>annotations</artifactId>
+            <version>${annotations.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.code.scaffold</groupId>
+            <artifactId>base-common</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 

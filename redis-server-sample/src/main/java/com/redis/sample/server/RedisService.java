@@ -1,8 +1,8 @@
-package com.redis.demo.server;
+package com.redis.sample.server;
 
 
 import com.base.common.enums.ResponseCodeEnum;
-import com.base.common.global.CommonConstant;
+import com.base.common.constant.CommonConstant;
 import com.base.common.global.GlobalException;
 import com.base.common.utils.ExceptionUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -70,7 +70,7 @@ public class RedisService {
     public void set(String key,@Nullable Object value,Long expireTime){
         ExceptionUtil.assertNotBlank(key, "key must not be blank!");
         redisTemplate.opsForValue().set(key,null==value?"":value.toString(),
-                expireTime == null? CommonConstant.R_KEY_DEFAULT_EXPIRE_TIME:expireTime,
+                expireTime == null? CommonConstant.R_KEY_EXPIRE_TIME_DEFAULT:expireTime,
                 TimeUnit.SECONDS);
     }
 

@@ -1,4 +1,4 @@
-package com.kafka.demo.dml;
+package com.kafka.sample.dml;
 
 import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.admin.KafkaAdminClient;

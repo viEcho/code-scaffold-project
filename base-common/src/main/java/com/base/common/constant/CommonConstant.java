@@ -1,4 +1,4 @@
-package com.base.common.global;
+package com.base.common.constant;
 
 /**
  * @description: 公共常量类
@@ -16,7 +16,7 @@ public class CommonConstant {
      * redis key默认过期时间
      * 30分钟
      */
-    public final static long R_KEY_DEFAULT_EXPIRE_TIME = 30*60L;
+    public final static long R_KEY_EXPIRE_TIME_DEFAULT = 30*60L;
 
     /**
      * redis key 24小时过期时间

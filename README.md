@@ -28,8 +28,9 @@ jdk1.8 + springboot2.4.5 +mysql8.0+flyway作为基础
 | :--- | :---:| :---|
 |code-scaffold-project|父工程|一个包含各种中间件及工具类的微服务集合|
 |base-common|子工程|所有微服务的基础工程，封装了一些基本的工具类，常量，全局异常处理|
-|kafka-server-sample|子工程|kafka 服务的demo示例工程|
-|redis-server-sample|子工程|redis 服务的demo示例工程|
+|kafka-server-sample|子工程|kafka 示例工程|
+|redis-server-sample|子工程|redis 示例工程|
+|seata-server-sample|子工程|seata 示例工程|
 
 
 #### 参与贡献者
