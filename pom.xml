@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <packaging>pom</packaging>
     <!-- 基于2.4.5 版本boot-start 构建-->
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -10,25 +8,32 @@
         <version>2.4.5</version>
         <relativePath/>
     </parent>
+
     <groupId>com.code.scaffold</groupId>
     <artifactId>code-scaffold-project</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>code-scaffold-project</name>
-    <description>one project that contain kinds of middleware</description>
+    <description>one project that contain kinds of sample</description>
+
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
 
     <!-- 子工程 -->
     <modules>
-        <module>redis-server-demo</module>
-        <module>kafka-server-demo</module>
-        <module>base-common-project</module>
+        <module>redis-server-sample</module>
+        <module>kafka-server-sample</module>
+        <module>base-common</module>
     </modules>
 
     <!-- 全局依赖版本管理 -->
     <properties>
-        <java.version>1.8</java.version>
+        <!--基于jdk1.8-->
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+
+        <!--基础工程jar版本-->
         <project.version>0.0.1-SNAPSHOT</project.version>
         <starter.version>2.4.5</starter.version>
-        <redisson.starter.version>3.13.1</redisson.starter.version>
         <mybatis.plus.starter.version>3.0.5</mybatis.plus.starter.version>
         <velocity.engine.core.version>2.0</velocity.engine.core.version>
         <validation.api.version>1.1.0.Final</validation.api.version>
@@ -39,8 +44,30 @@
         <hutool.version>5.2.4</hutool.version>
         <aspectj.version>1.9.5</aspectj.version>
         <pagehelper.version>1.2.5</pagehelper.version>
+        <slf4j-api.version>1.7.25</slf4j-api.version>
+        <slf4j-log4j12.version>1.7.25</slf4j-log4j12.version>
+
+        <!--子模块jar版本-->
+        <kafka.client.version>2.2.0</kafka.client.version>
+        <redisson.starter.version>3.13.1</redisson.starter.version>
     </properties>
 
+    <!--管理各子模块 各自引入的jar 版本-->
+    <dependencyManagement>
+        <dependencies>
+            <!--由于redisson 可作分布式锁，此处引入redisson 作为数据缓存-->
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${redisson.starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.kafka</groupId>
+                <artifactId>kafka-clients</artifactId>
+                <version>${kafka.client.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -50,12 +77,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>
-        <!--由于redisson 可作分布式锁，此处引入redisson 作为数据缓存-->
-        <dependency>
-            <groupId>org.redisson</groupId>
-            <artifactId>redisson-spring-boot-starter</artifactId>
-            <version>${redisson.starter.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -138,6 +159,16 @@
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>${pagehelper.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j-log4j12.version}</version>
         </dependency>
     </dependencies>
 
