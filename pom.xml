@@ -56,7 +56,7 @@
         <redisson.starter.version>3.13.1</redisson.starter.version>
     </properties>
 
-    <!--管理各子模块 各自引入的jar 版本-->
+    <!--管理各子模块 各自引入的 中间件jar版本-->
     <dependencyManagement>
         <dependencies>
             <!--由于redisson 可作分布式锁，此处引入redisson 作为数据缓存-->
