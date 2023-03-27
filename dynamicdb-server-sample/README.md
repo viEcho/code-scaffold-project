@@ -1,4 +1,4 @@
-## dynamic-datasource-sample
+## dynamicdb-server-sample
 
 #### 介绍
 此为一个动态数据源切换演示工程，可根据注解动态切换数据源，不加注解默认为主库

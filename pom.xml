@@ -24,7 +24,8 @@
         <module>kafka-server-sample</module>
         <module>base-common</module>
         <module>seata-server-sample</module>
-        <module>dynamic-datasource-server-sample</module>
+        <module>dynamicdb-server-sample</module>
+        <module>es-server-sample</module>
     </modules>
 
     <!-- 全局依赖版本管理 -->
