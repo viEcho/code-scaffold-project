@@ -1,0 +1,3 @@
+tess4j:
+  data-path: /Users/echo/Documents/sCloud/code-scaffold-project/tess4j-server-sample/src/main/resources/static/tessdata
+  language: chi_sim

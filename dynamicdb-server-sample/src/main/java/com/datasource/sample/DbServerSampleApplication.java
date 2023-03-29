@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
- * @description: 启动类
+ * @description: 动态数据源服务启动类
  * @author: echo
  * @date: 2023/3/16
  */

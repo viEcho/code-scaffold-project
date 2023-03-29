@@ -26,6 +26,7 @@
         <module>seata-server-sample</module>
         <module>dynamicdb-server-sample</module>
         <module>es-server-sample</module>
+        <module>tess4j-server-sample</module>
     </modules>
 
     <!-- 全局依赖版本管理 -->
@@ -54,6 +55,7 @@
         <!--子模块jar版本-->
         <kafka.client.version>2.2.0</kafka.client.version>
         <redisson.starter.version>3.13.1</redisson.starter.version>
+        <es.version>3.0.5</es.version>
     </properties>
 
     <!--管理各子模块 各自引入的 中间件jar版本-->
@@ -69,6 +71,11 @@
                 <groupId>org.apache.kafka</groupId>
                 <artifactId>kafka-clients</artifactId>
                 <version>${kafka.client.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+                <version>${es.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

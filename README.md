@@ -10,7 +10,7 @@
 如需某个微服务为单独的公用服务，自行抽取暴露出来应用到你们自己工程中即可；
 
 #### 软件架构
-jdk1.8 + springboot2.4.5 +mysql8.0+flyway作为基础
+jdk1.8 + springboot2.4.5 + mysql8.0 + flyway插件作为基础
 
 其中最外层的pom文件即为依赖管理文件，各子工程中无须再单独引入依赖；
 
@@ -27,11 +27,12 @@ jdk1.8 + springboot2.4.5 +mysql8.0+flyway作为基础
 | :--- | :---:| :---|
 |code-scaffold-project      |父工程                        |一个包含各种中间件及工具类的微服务集合|
 |base-common                |子工程                        |所有微服务的基础工程，封装了一些基本的工具类，常量，全局异常处理|
-|kafka-server-sample        |kafka子工程                   |kafka 示例工程|
-|redis-server-sample        |redis子工程                   |redis 示例工程|
-|seata-server-sample        |seata子工程                   |seata 示例工程|
 |dynamic-datasource-sample  |dynamic-datasource子工程      |动态数据源 示例工程|
-
+|es-server-sample           |es子工程                      |es搜索引擎 示例工程|
+|kafka-server-sample        |kafka子工程                   |kafka  中间件示例工程|
+|redis-server-sample        |redis子工程                   |redis  缓存示例工程|
+|seata-server-sample        |seata子工程                   |seata  分布式事务示例工程|
+|tess4j-server-sample       |tess4j子工程                  |tess4j 图片识别示例工程|
 
 #### 参与贡献者
 - Jay
@@ -39,6 +40,7 @@ jdk1.8 + springboot2.4.5 +mysql8.0+flyway作为基础
 - xxx
 
 #### 时间线
-- 2022.6.6 初始化基本工程
+- 2022.6.6  初始化基本工程
 - 2022.6.14 提交缺失的pom文件
 - 2023.3.16 模块重新命名及新增seata和dynamic-datasource模块
+- 2023.3.30 完成图片识别示例工程
