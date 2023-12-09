@@ -27,7 +27,7 @@ jdk1.8 + springboot2.4.5 + mysql8.0 + flyway插件作为基础
 | :--- | :---:| :---|
 |code-scaffold-project      |父工程                        |一个包含各种中间件及工具类的微服务集合|
 |base-common                |子工程                        |所有微服务的基础工程，封装了一些基本的工具类，常量，全局异常处理|
-|dynamic-datasource-sample  |dynamic-datasource子工程      |动态数据源 示例工程|
+|dynamicdb-server-sample    |dynamic-datasource子工程      |动态数据源 示例工程|
 |es-server-sample           |es子工程                      |es搜索引擎 示例工程|
 |kafka-server-sample        |kafka子工程                   |kafka  中间件示例工程|
 |redis-server-sample        |redis子工程                   |redis  缓存示例工程|
