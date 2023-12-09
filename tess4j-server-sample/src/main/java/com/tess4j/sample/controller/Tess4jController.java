@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @description: TODO
+ * @description: 图片识别接口
  * @author: echo
  * @date: 2023/3/29
  */
