@@ -22,9 +22,17 @@ import java.util.Map;
 @Slf4j
 public class TestDataSourceController {
 
+    /**
+     * 用户服务
+     */
     @Autowired
     private UserService userService;
 
+    /**
+     * 查询计数
+     *
+     * @return {@link ResponseVO}
+     */
     @GetMapping("/queryUserCount")
     ResponseVO queryCount(){
         ResponseVO vo = new ResponseVO();
