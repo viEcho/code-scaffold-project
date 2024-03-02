@@ -2,10 +2,10 @@ package com.base.common.global;
 
 import com.base.common.enums.ResponseCodeEnum;
 import com.base.common.vo.ResponseVO;
-import com.base.common.enums.ResponseCodeEnum;
 import com.base.common.utils.ExceptionUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.BadSqlGrammarException;
+import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,11 +26,19 @@ public class GlobalExceptionHandler {
      * @param: e
      * @return: com.vbills.modules.common.ResponseVO
      */
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler({Exception.class})
     @ResponseBody
     public ResponseVO error(Exception e){
         e.printStackTrace();
-        return ResponseVO.error();
+        return ResponseVO.fail();
+    }
+
+    @ExceptionHandler({BindException.class})
+    @ResponseBody
+    public ResponseVO error(BindException e){
+        e.printStackTrace();
+        e.getBindingResult().getAllErrors().get(0).getDefaultMessage();
+        return ResponseVO.fail();
     }
 
     /**
@@ -40,11 +48,11 @@ public class GlobalExceptionHandler {
      * @param: e
      * @return: com.vbills.modules.common.ResponseVO
      */
-    @ExceptionHandler(GlobalException.class)
+    @ExceptionHandler({GlobalException.class})
     @ResponseBody
     public ResponseVO error(GlobalException e){
         log.error(ExceptionUtil.getStackMessage(e));//打印异常堆栈信息
-        return ResponseVO.error().msg(e.getMessage()).code(e.getCode());
+        return ResponseVO.fail().msg(e.getMessage()).code(e.getCode());
     }
 
     /**
@@ -58,6 +66,6 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public ResponseVO error(BadSqlGrammarException e){
         e.printStackTrace();
-        return ResponseVO.definedResponseVO(ResponseCodeEnum.BAD_SQL_GRAMMAR);
+        return new ResponseVO(ResponseCodeEnum.BAD_SQL_GRAMMAR);
     }
 }

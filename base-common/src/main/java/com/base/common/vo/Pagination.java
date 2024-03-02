@@ -15,10 +15,10 @@ public class Pagination<T> {
 
     private int pageNum;
     private int pageSize;
-    private List<T> list;
     private int total;
+    private List<T> list;
 
-    public void setList(List<?> pageList,Class<T> elementType){
+    public void setList(List<?> pageList, Class<T> elementType){
         List<T> list = JSONUtil.toList(JSONUtil.parseArray(pageList), elementType);
         this.list = list;
     }

@@ -47,21 +47,8 @@ public class GlobalException extends RuntimeException{
      */
     public GlobalException(String msg){
         super(msg);
-        this.code = ResponseCodeEnum.UNKNOWN_REASON.getCode();
+        this.code = ResponseCodeEnum.UNKNOWN_REASON_ERROR.getCode();
         this.msg = msg;
-    }
-    /**
-     * @description: 接收自定传递的状态码和异常消息
-     * @author: echo
-     * @date: 2021/5/25
-     * @param: code
-     * @return:
-     */
-    public GlobalException(Integer code){
-        super(ResponseCodeEnum.UNKNOWN_REASON.getMsg());
-        this.code = code;
-        this.msg = ResponseCodeEnum.UNKNOWN_REASON.getMsg();
-
     }
 
     /**
@@ -72,9 +59,9 @@ public class GlobalException extends RuntimeException{
      * @return:
      */
     public GlobalException(ResponseCodeEnum responseCodeEnum){
-        super(responseCodeEnum.getMsg());
+        super(responseCodeEnum.getDesc());
         this.code = responseCodeEnum.getCode();
-        this.msg = responseCodeEnum.getMsg();
+        this.msg = responseCodeEnum.getDesc();
     }
 
     @Override

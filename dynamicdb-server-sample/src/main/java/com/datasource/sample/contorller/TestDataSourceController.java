@@ -1,6 +1,5 @@
 package com.datasource.sample.contorller;
 
-import com.base.common.utils.ExceptionUtil;
 import com.base.common.vo.ResponseVO;
 import com.datasource.sample.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -34,17 +33,10 @@ public class TestDataSourceController {
      * @return {@link ResponseVO}
      */
     @GetMapping("/queryUserCount")
-    ResponseVO queryCount(){
-        ResponseVO vo = new ResponseVO();
-        try {
-            Map<String,Integer> countMap = new HashMap<>();
-            countMap.put("master",userService.queryMasterUserCount());
-            countMap.put("slave",userService.querySlaveUserCount());
-            vo.data(countMap);
-        } catch (Exception e) {
-            log.error("TestDataSourceController queryUserCount occurs error：{}",e);
-            ExceptionUtil.checkResponse(e,vo);
-        }
-        return vo;
+    ResponseVO queryCount() {
+        Map<String, Integer> countMap = new HashMap<>();
+        countMap.put("master", userService.queryMasterUserCount());
+        countMap.put("slave", userService.querySlaveUserCount());
+        return new ResponseVO(countMap);
     }
 }

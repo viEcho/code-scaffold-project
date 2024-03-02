@@ -17,7 +17,6 @@ public class KafkaTopicDML {
         Properties props = new Properties();
         props.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG,"CentOS101:9092,CentOS102:9092,CentOS103:9092");
         KafkaAdminClient adminClient = (KafkaAdminClient) KafkaAdminClient.create(props);
-
         adminClient.close();
     }
 

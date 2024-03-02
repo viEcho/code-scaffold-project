@@ -3,7 +3,9 @@ package com.base.common.vo;
 import com.base.common.enums.ResponseCodeEnum;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+
 
 /**
  * @description: 统一返回封装
@@ -12,6 +14,7 @@ import lombok.Data;
  */
 @Data
 @ApiModel(value = "全局的统一返回结果")
+@AllArgsConstructor
 public class ResponseVO {
     @ApiModelProperty(value = "是否成功")
     private Boolean success;
@@ -28,7 +31,34 @@ public class ResponseVO {
     public ResponseVO() {
         this.success = ResponseCodeEnum.SUCCESS.getSuccess();
         this.code = ResponseCodeEnum.SUCCESS.getCode();
-        this.msg= ResponseCodeEnum.SUCCESS.getMsg();
+        this.msg= ResponseCodeEnum.SUCCESS.getDesc();
+    }
+
+    public ResponseVO(Object data){
+        this.success = ResponseCodeEnum.SUCCESS.getSuccess();
+        this.code = ResponseCodeEnum.SUCCESS.getCode();
+        this.msg = ResponseCodeEnum.SUCCESS.getDesc();
+        this.data = data;
+    }
+
+    public ResponseVO(int code,String msg,Object data){
+        this.success = ResponseCodeEnum.SUCCESS.getSuccess();
+        this.code = code;
+        this.msg = msg;
+        this.data = data;
+    }
+
+    public  ResponseVO (ResponseCodeEnum responseCodeEnum){
+        this.success = responseCodeEnum.getSuccess();
+        this.code = responseCodeEnum.getCode();
+        this.msg = responseCodeEnum.getDesc();
+    }
+
+    public  ResponseVO (ResponseCodeEnum responseCodeEnum,Object data){
+        this.success = responseCodeEnum.getSuccess();
+        this.code = responseCodeEnum.getCode();
+        this.msg = responseCodeEnum.getDesc();
+        this.data = data;
     }
 
     /**
@@ -38,12 +68,14 @@ public class ResponseVO {
      * @param:
      * @return: com.vbills.modules.common.ResponseVO
      */
-    public static ResponseVO ok(){
+    public static ResponseVO success(){
         return new ResponseVO()
         .success(ResponseCodeEnum.SUCCESS.getSuccess())
         .code(ResponseCodeEnum.SUCCESS.getCode())
-        .msg(ResponseCodeEnum.SUCCESS.getMsg());
+        .msg(ResponseCodeEnum.SUCCESS.getDesc());
     }
+
+
 
     /**
      * @description: error返回
@@ -52,27 +84,14 @@ public class ResponseVO {
      * @param:
      * @return: com.vbills.modules.common.ResponseVO
      */
-    public static ResponseVO error(){
+    public static ResponseVO fail(){
         return new ResponseVO()
-        .success(ResponseCodeEnum.UNKNOWN_REASON.getSuccess())
-        .code(ResponseCodeEnum.UNKNOWN_REASON.getCode())
-        .msg(ResponseCodeEnum.UNKNOWN_REASON.getMsg());
+        .success(ResponseCodeEnum.UNKNOWN_REASON_ERROR.getSuccess())
+        .code(ResponseCodeEnum.UNKNOWN_REASON_ERROR.getCode())
+        .msg(ResponseCodeEnum.UNKNOWN_REASON_ERROR.getDesc());
     }
 
-    /**
-     * @description: definedResponseVO 自定义返回
-     * @author: echo
-     * @date: 2021/5/22
-     * @param: ResponseVOCodeEnum
-     * @return: com.vbills.modules.common.ResponseVO
-     */
-    public static ResponseVO definedResponseVO(ResponseCodeEnum responseCodeEnum){
-        ResponseVO r = new ResponseVO();
-        r.setSuccess(responseCodeEnum.getSuccess());
-        r.setCode(responseCodeEnum.getCode());
-        r.setMsg(responseCodeEnum.getMsg());
-        return r;
-    }
+
     public ResponseVO success(Boolean success){
         this.setSuccess(success);
         return this;

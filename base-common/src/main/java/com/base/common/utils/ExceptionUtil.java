@@ -4,8 +4,8 @@ package com.base.common.utils;
 import com.base.common.enums.ResponseCodeEnum;
 import com.base.common.global.GlobalException;
 import com.base.common.vo.ResponseVO;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.lang.Nullable;
+import com.sun.istack.internal.Nullable;
+import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -64,17 +64,17 @@ public class ExceptionUtil {
      */
     public static void checkResponse(Exception e, ResponseVO vo){
         vo.setSuccess(false);
-        vo.setCode(ResponseCodeEnum.UNKNOWN_REASON.getCode());
-        vo.setMsg(ResponseCodeEnum.UNKNOWN_REASON.getMsg());
+        vo.setCode(ResponseCodeEnum.UNKNOWN_REASON_ERROR.getCode());
+        vo.setMsg(ResponseCodeEnum.UNKNOWN_REASON_ERROR.getDesc());
         if(e instanceof GlobalException){
             vo.setCode(((GlobalException) e).getCode());
             vo.setMsg(((GlobalException) e).getMsg());
         }else if(e instanceof SQLException){
             vo.setCode(ResponseCodeEnum.BAD_SQL_GRAMMAR.getCode());
-            vo.setMsg(ResponseCodeEnum.BAD_SQL_GRAMMAR.getMsg());
+            vo.setMsg(ResponseCodeEnum.BAD_SQL_GRAMMAR.getDesc());
         }else if(e instanceof RuntimeException){
             String message = e.getMessage();
-            if(StringUtils.isNotBlank(message) && message.contains("Cause")){
+            if(!StringUtils.isEmpty(message) && message.contains("Cause")){
                 message = message.substring(0,message.indexOf("Cause"));
             }
             vo.setMsg(message);

@@ -8,34 +8,73 @@ import lombok.Getter;
  * @date: 2021/5/22
  */
 @Getter
-public enum ResponseCodeEnum {
+public enum ResponseCodeEnum implements StatusCode {
 
-    SUCCESS(true, 1000,"Success"),
-    UNKNOWN_REASON(false, 1001, "Unknown error"),
-    BAD_SQL_GRAMMAR(false, 1002, "Sql syntax error"),
-    JSON_PARSE_ERROR(false, 1003, "Json parsing error"),
-    PARAM_ERROR(false, 1004, "Parameter is not correct"),
-    FILE_UPLOAD_ERROR(false, 1005, "File upload occurs error"),
-    EXCEL_DATA_IMPORT_ERROR(false, 1006, "Excel data import occurs error"),
-    DATA_ADD_REPEAT_ERROR(false, 1007, "The data be added duplicated "),
-    IMPORTANT_PARAMS_MISSED(false,1008,"Missing important parameters"),
-    REFERENCED_BY_OTHERS_DATA(false,1009,"It has been referenced by other data. Operation is not allowed"),
-    REDIS_KEY_NOT_NULL(false,1010,"Key in redis cannot be empty"),
-    REDIS_KEY_NOT_EXIT(false,1011,"The key does not exist in redis"),
-    ADD_REDIS_LOCK_FAIL(false,1012,"Redis locking failed"),
-    GENERATE_DATA_FAIL(false,1013,"Generate data to redis failed"),
-    EXIST_SAME_LEVEL_DATA(false,1014,"Data of the same level already exists");
+    /**
+     * 系统异常及公共普通异常 1000-1199
+     */
+    SUCCESS(true, 1000, I18nResponseEnum.SUCCESS_I18N),
+    VALIDATE_ERROR(false, 1001, I18nResponseEnum.VALIDATE_ERROR_I18N),
+    RIGHT_VALIDATE_ERROR(false, 1002,I18nResponseEnum.RIGHT_VALIDATE_ERROR_I18N),
+    UNKNOWN_REASON_ERROR(false, 1003, I18nResponseEnum.UNKNOWN_REASON_ERROR_I18N),
+    PARAM_ERROR(false, 1004, I18nResponseEnum.PARAM_ERROR_I18N),
+    NO_NEED_HANDLE_ERROR(false, 1005, I18nResponseEnum.NO_NEED_HANDLE_ERROR_I18N),
+
+    /**
+     * 自定义异常 1200-1500
+     */
+    BAD_SQL_GRAMMAR(false,1200, I18nResponseEnum.BAD_SQL_GRAMMAR_I18N),
+    JSON_PARSE_ERROR(false,1202, I18nResponseEnum.JSON_PARSE_ERROR_I18N),
+    FILE_UPLOAD_ERROR(false, 1203, I18nResponseEnum.FILE_UPLOAD_ERROR_I18N),
+    EXCEL_DATA_IMPORT_ERROR(false, 1204, I18nResponseEnum.EXCEL_DATA_IMPORT_I18N),
+    DATA_ADD_REPEAT_ERROR(false, 1205, I18nResponseEnum.DATA_ADD_REPEAT_I18N),
+    IMPORTANT_PARAMS_MISSED(false, 1206, I18nResponseEnum.IMPORTANT_PARAMS_MISSED_I18N),
+    REFERENCED_BY_OTHERS_DATA(false, 1207, I18nResponseEnum.REFERENCED_BY_OTHERS_I18N),
+    REDIS_KEY_NOT_NULL(false, 1208, I18nResponseEnum.REDIS_KEY_NOT_NULL_I18N),
+    REDIS_KEY_NOT_EXIST(false, 1209, I18nResponseEnum.REDIS_KEY_NOT_EXIST_I18N),
+    ADD_REDIS_LOCK_FAIL(false, 1210, I18nResponseEnum.ADD_REDIS_LOCK_FAIL_I18N),
+    GENERATE_DATA_FAIL(false, 1211, I18nResponseEnum.GENERATE_DATA_FAIL_I18N),
+    EXIST_SAME_LEVEL_DATA(false, 1212, I18nResponseEnum.EXIST_SAME_LEVEL_DATA_I18N);
 
     // 是否响应成功
     private Boolean success;
     // 响应的状态码
     private Integer code;
-    // 响应的消息
-    private String msg;
+    // 国际化枚举
+    private I18nResponseEnum i18nResponseEnum;
 
-    ResponseCodeEnum(Boolean success, Integer code, String msg) {
+    /**
+     * 响应代码枚举
+     *
+     * @param success          成功
+     * @param code             密码
+     * @param i18nResponseEnum i18n响应枚举
+     */
+    ResponseCodeEnum(Boolean success, Integer code, I18nResponseEnum i18nResponseEnum) {
         this.success = success;
         this.code = code;
-        this.msg = msg;
+        this.i18nResponseEnum = i18nResponseEnum;
+    }
+
+    /**
+     * 获取desc
+     *
+     * @return {@link String}
+     */
+    @Override
+    public int getCode() {
+        // 后面这里做了登录的话，可以根据前台传递的国际化类型动态切换返回
+        return this.code;
+    }
+
+    /**
+     * 获取desc
+     *
+     * @return {@link String}
+     */
+    @Override
+    public String getDesc() {
+        // 后面这里做了登录的话，可以根据前台传递的国际化类型动态切换返回
+        return this.i18nResponseEnum.getMsgCn();
     }
 }

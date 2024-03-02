@@ -1,0 +1,23 @@
+server:
+  port: 8084
+  servlet:
+    context-path: /redis
+
+spring:
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password: #本地演示默认不配置密码 线上环境需要修改redis.config中的requirepass关键字
+              #后面就是跟的密码，默认情况下是注释掉的，即默认不需要密码
+    jedis:
+      pool:
+        min-idle: 0
+        max-active: 8
+        max-idle: 8
+        max-wait: -1ms
+    connect-timeout: 30000ms
+
+    redisson:
+      # 配置单点模式
+      config: classpath:redisson.yml
